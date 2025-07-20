@@ -1,0 +1,358 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* S2PGGs Esports Design System - Purple Gaming Theme */
+
+@layer base {
+  :root {
+    /* Light mode only - S2PGGs Esports Design System */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 270 91% 60%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 270 100% 70%;
+
+    --secondary: 270 15% 92%;
+    --secondary-foreground: 240 10% 3.9%;
+
+    --muted: 270 15% 96%;
+    --muted-foreground: 240 3.8% 45%;
+
+    --accent: 270 91% 60%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 270 20% 88%;
+    --input: 270 20% 88%;
+    --ring: 270 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* Gaming-specific design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(270 91% 60%), hsl(280 100% 65%));
+    --gradient-secondary: linear-gradient(180deg, hsl(0 0% 98%), hsl(270 15% 96%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(270 15% 96%) 50%, hsl(270 91% 60%) 100%);
+    
+    --shadow-glow: 0 0 30px hsl(270 91% 60% / 0.15);
+    --shadow-purple: 0 10px 40px hsl(270 91% 60% / 0.1);
+    --shadow-elevated: 0 20px 60px hsl(240 10% 3.9% / 0.08);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 10% 3.9%;
+    --sidebar-primary: 270 91% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 270 15% 92%;
+    --sidebar-accent-foreground: 240 10% 3.9%;
+    --sidebar-border: 270 20% 88%;
+    --sidebar-ring: 270 91% 60%;
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+    font-variant-ligatures: common-ligatures;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent;
+  }
+
+  /* Scroll snap fallback for mobile */
+  @media (max-width: 768px) {
+    html {
+      scroll-snap-type: y mandatory;
+    }
+    
+    section {
+      scroll-snap-align: start;
+    }
+  }
+}
+
+@layer components {
+  /* Gaming-specific component styles */
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--primary-glow) / 0.5);
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(0 0% 100%) 50%, hsl(270 30% 90%) 80%, hsl(270 60% 85%) 100%);
+  }
+  
+  .purple-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .gaming-card {
+    @apply bg-card/90 backdrop-blur-md border border-border rounded-xl;
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-purple);
+  }
+
+  .esports-button {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold;
+    background: var(--gradient-primary);
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .esports-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-purple);
+  }
+
+  .nav-link {
+    @apply relative px-4 py-2 text-foreground/80 transition-all duration-300;
+  }
+  
+  .nav-link:hover {
+    @apply text-primary;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  /* Enhanced styling */
+  .gaming-card {
+    @apply bg-card/95 border-2 border-border/80;
+    box-shadow: 0 8px 32px hsl(240 10% 3.9% / 0.1);
+  }
+
+  .esports-button {
+    box-shadow: 0 4px 16px hsl(270 91% 60% / 0.25);
+  }
+
+  .esports-button:hover {
+    box-shadow: 0 8px 24px hsl(270 91% 60% / 0.35);
+  }
+
+  .purple-glow {
+    box-shadow: 0 0 20px hsl(270 91% 60% / 0.2);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 15px hsl(270 91% 60% / 0.4);
+  }
+
+  /* Professional card styling */
+  .stat-card {
+    @apply border-2 border-border/60;
+    background: linear-gradient(135deg, hsl(0 0% 100%), hsl(270 15% 98%));
+    box-shadow: 0 4px 20px hsl(240 10% 3.9% / 0.08);
+  }
+
+  .achievement-badge {
+    @apply bg-secondary/80 border-2 border-primary/20 text-foreground;
+  }
+
+  /* Enhanced animations */
+  .animate-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Advanced hero animations */
+  @keyframes slideUpScale {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95) rotateX(10deg);
+    }
+    50% {
+      opacity: 0.7;
+      transform: translateY(20px) scale(0.98) rotateX(5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateX(0deg);
+    }
+  }
+
+  @keyframes bounceInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px) scale(0.8) rotateY(-15deg);
+    }
+    60% {
+      opacity: 0.8;
+      transform: translateX(15px) scale(1.05) rotateY(5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1) rotateY(0deg);
+    }
+  }
+
+  @keyframes bounceInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100px) scale(0.8) rotateY(15deg);
+    }
+    60% {
+      opacity: 0.8;
+      transform: translateX(-15px) scale(1.05) rotateY(-5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1) rotateY(0deg);
+    }
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      text-shadow: 0 0 15px hsl(270 91% 60% / 0.4);
+    }
+    50% {
+      text-shadow: 0 0 25px hsl(270 91% 60% / 0.8), 0 0 35px hsl(270 91% 60% / 0.4);
+    }
+  }
+
+  @keyframes iconFloat {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes iconSpin {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    25% {
+      transform: rotate(90deg) scale(1.1);
+    }
+    50% {
+      transform: rotate(180deg) scale(1);
+    }
+    75% {
+      transform: rotate(270deg) scale(1.1);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+
+  /* Merch section animations */
+  @keyframes slideUpFade {
+    0% {
+      opacity: 0;
+      transform: translateY(60px) scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes glowFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.8) rotateY(-15deg);
+      filter: blur(10px);
+    }
+    50% {
+      opacity: 0.7;
+      transform: translateY(20px) scale(0.95) rotateY(-5deg);
+      filter: blur(5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateY(0deg);
+      filter: blur(0px);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(180deg);
+    }
+  }
+
+  /* Staggered animations */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+
+  /* Video modal animations */
+  .modal-enter {
+    animation: modalFadeIn 0.3s ease-out;
+  }
+  
+  @keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Professional dropdown styling */
+  .dropdown-menu {
+    @apply bg-card border-2 border-border/50;
+    box-shadow: 0 8px 32px hsl(240 10% 3.9% / 0.12);
+  }
+}
